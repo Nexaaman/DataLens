@@ -46,5 +46,5 @@ class Insight():
             return
 
         
-        st.subheader("Insights")
+        st.subheader("Answer")
         st.write(insights)

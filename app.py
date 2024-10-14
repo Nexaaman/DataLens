@@ -6,19 +6,22 @@ from insights import Insight
 st.set_page_config(layout="wide")
 
 def main():
-    st.sidebar.title("File and Column Selection")
+    
     sheet_name = None
     df = None
 
     st.title("DataLens")
+    st.write("Unlock Stories Hidden in Your Data")
     uploaded_file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
 
     if uploaded_file is not None:
         try:
             if uploaded_file.name.endswith('.csv'):
                 df = pd.read_csv(uploaded_file)
+                st.sidebar.title("Column Selection")
             elif uploaded_file.name.endswith('.xlsx'):
                 excel_file = pd.ExcelFile(uploaded_file, engine='openpyxl')
+                st.sidebar.title("Sheet and Column Selection")
                 sheet_name = st.sidebar.selectbox("Select a sheet", excel_file.sheet_names)
                 df = pd.read_excel(uploaded_file, sheet_name=sheet_name, engine='openpyxl')
 
